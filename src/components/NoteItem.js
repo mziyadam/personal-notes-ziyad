@@ -2,7 +2,7 @@ import React from "react";
 import { showFormattedDate } from "../utils";
 import { Card, Button } from 'react-bootstrap';
 
-function NoteItem({ id, title, body, archieved, createdAt }) {
+function NoteItem({ title, body, createdAt }) {
     return (
         <Card>
             <Card.Body>
