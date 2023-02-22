@@ -1,10 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NoteItem from './components/NoteItem';
 // import style
 import './styles/style.css';
 import { getInitialData } from './utils';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NoteItem from './components/NoteItem';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
