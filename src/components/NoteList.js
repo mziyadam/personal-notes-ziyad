@@ -12,44 +12,54 @@ class NoteList extends React.Component {
             notes: getInitialData()
         }
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-        this.onDeleteNoteHandler= this.onDeleteNoteHandler.bind(this);
+        this.onDeleteNoteHandler = this.onDeleteNoteHandler.bind(this);
     }
 
     onAddNoteHandler({ title, body }) {
         this.setState((prevState) => {
-          return {
-            notes: [
-              ...prevState.notes,
-              {
-                id: +new Date(),
-                title:title,
-                body:body,
-                archieved:false,
-                createdAt:+new Date(),
-              }
-            ]
-          }
+            return {
+                notes: [
+                    ...prevState.notes,
+                    {
+                        id: +new Date(),
+                        title: title,
+                        body: body,
+                        archieved: false,
+                        createdAt: +new Date(),
+                    }
+                ]
+            }
         });
-      }
-      onDeleteNoteHandler(id) {
+    }
+    onDeleteNoteHandler(id) {
         const notes = this.state.notes.filter(note => note.id !== id);
         this.setState({ notes: notes });
-      }
+    }
     render() {
-        return (
-            <div>
-                <AddNote addNote={this.onAddNoteHandler}/>
-            <div className="row">
-                {
-                    this.state.notes.map((note) => (
-                        <div key={note.id} className='col-md-3 p-2'>
-                            <NoteItem onDelete={this.onDeleteNoteHandler} {...note}  />
-                        </div>
-                    ))
-                }
-            </div>
-            </div>
-        );
+        if (this.state.notes.length > 0) {
+            return (
+                <div>
+                    <AddNote addNote={this.onAddNoteHandler} />
+                    <div className="row">
+                        {
+                            this.state.notes.map((note) => (
+                                <div key={note.id} className='col-md-3 p-2'>
+                                    <NoteItem onDelete={this.onDeleteNoteHandler} {...note} />
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            );
+
+        } else {
+            return (
+                <div>
+                    <AddNote addNote={this.onAddNoteHandler} />
+                    <h1 className='text-center'>Tidak ada catatan</h1>
+                </div>
+            );
+        }
     }
 }
 
