@@ -12,6 +12,7 @@ class NoteList extends React.Component {
             notes: getInitialData()
         }
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+        this.onDeleteNoteHandler= this.onDeleteNoteHandler.bind(this);
     }
 
     onAddNoteHandler({ title, body }) {
@@ -30,7 +31,10 @@ class NoteList extends React.Component {
           }
         });
       }
-
+      onDeleteNoteHandler(id) {
+        const notes = this.state.notes.filter(note => note.id !== id);
+        this.setState({ notes: notes });
+      }
     render() {
         return (
             <div>
@@ -39,7 +43,7 @@ class NoteList extends React.Component {
                 {
                     this.state.notes.map((note) => (
                         <div key={note.id} className='col-md-3 p-2'>
-                            <NoteItem {...note}  />
+                            <NoteItem onDelete={this.onDeleteNoteHandler} {...note}  />
                         </div>
                     ))
                 }

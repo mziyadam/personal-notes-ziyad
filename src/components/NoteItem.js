@@ -1,10 +1,11 @@
 import React from "react";
 import { showFormattedDate } from "../utils";
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import DeleteButton from "./DeleteButton";
 
-function NoteItem({ title, body, createdAt }) {
+function NoteItem({ id, title, body, createdAt, onDelete }) {
     return (
-        <Card>
+        <Card className="p-2 m-2">
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Subtitle>{showFormattedDate(createdAt)}</Card.Subtitle>
@@ -12,11 +13,10 @@ function NoteItem({ title, body, createdAt }) {
                     {body}
                 </Card.Text>
                 <div className="row">
-                    <div className="col-md-6">
-                        <Button variant="danger">Go somewhere</Button></div>
-                    <div className="col-md-6">
-                        <Button variant="info">Go somewhere</Button></div>
-                </div>
+                        <DeleteButton id={id} onDelete={onDelete}></DeleteButton></div>
+                    {/* <div className="col-md-6">
+                        <Button variant="info">Go somewhere</Button></div> */}
+                
             </Card.Body>
         </Card>
     );
