@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
 // import style
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NoteList from './components/NoteList';
+import App from './components/App';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-    <NoteList/>
+    <BrowserRouter>
+    <App/>
+  </BrowserRouter>
 );
