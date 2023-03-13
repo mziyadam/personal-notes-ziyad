@@ -1,24 +1,17 @@
 import React from 'react';
 // import style
-import { addNote, deleteNote, getInitialData } from '../utils';
+import { deleteNote, getInitialData } from '../utils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoteItem from './NoteItem';
-import AddNote from './AddNote';
-import PropTypes from 'prop-types';
 class NoteList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             notes: getInitialData()
         }
-        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onDeleteNoteHandler = this.onDeleteNoteHandler.bind(this);
     }
 
-    onAddNoteHandler({ title, body }) {
-        addNote({title,body});
-        this.setState({ notes: getInitialData() });
-    }
     onDeleteNoteHandler(id) {
         deleteNote(id);
         this.setState({ notes: getInitialData() });
@@ -27,7 +20,6 @@ class NoteList extends React.Component {
         if (this.state.notes.length > 0) {
             return (
                 <div>
-                    <AddNote addNote={this.onAddNoteHandler} />
                     <div className="row">
                         {
                             this.state.notes.map((note) => (
@@ -43,14 +35,10 @@ class NoteList extends React.Component {
         } else {
             return (
                 <div>
-                    <AddNote addNote={this.onAddNoteHandler} />
                     <h1 className='text-center'>Tidak ada catatan</h1>
                 </div>
             );
         }
     }
 }
-NoteList.propTypes={
-    notes: PropTypes.arrayOf(PropTypes.object)
-};
 export default NoteList;

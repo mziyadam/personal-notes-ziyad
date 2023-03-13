@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import { addNote } from '../utils';
 
 class AddNote extends React.Component {
     constructor(props) {
@@ -34,7 +34,9 @@ class AddNote extends React.Component {
 
     onSubmitEventHandler(event) {
         event.preventDefault();
-        this.props.addNote(this.state);
+        const title = this.state.title;
+        const body = this.state.body;
+        addNote({ title, body });
     }
     render() {
         return (
@@ -59,9 +61,4 @@ class AddNote extends React.Component {
     }
 }
 
-AddNote.propTypes = {
-    onTitleChangeEventHandler: PropTypes.func,
-    onBodyChangeEventHandler: PropTypes.func,
-    onSubmitEventHandler: PropTypes.func
-};
 export default AddNote;
