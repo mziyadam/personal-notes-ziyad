@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../utils/network-data';
-import PropTypes from 'prop-types';
 function InputRegister() {
     const navigate = useNavigate();
     const [name, onNameChange] = useInput('');
@@ -47,13 +46,4 @@ function InputRegister() {
         </div>
     );
 }
-InputRegister.propTypes = {
-    name: PropTypes.string,
-    onNameChange: PropTypes.func,
-    email: PropTypes.string,
-    onEmailChange: PropTypes.func,
-    password: PropTypes.string,
-    onPasswordChange: PropTypes.func,
-    mRegister: PropTypes.func
-};
 export default InputRegister;

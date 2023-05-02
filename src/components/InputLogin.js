@@ -40,10 +40,6 @@ function InputLogin({loginSuccess}) {
     );
 }
 InputLogin.propTypes = {
-  email: PropTypes.string,
-  onEmailChange: PropTypes.func,
-  password: PropTypes.string,
-  onPasswordChange: PropTypes.func,
-  mLogin: PropTypes.func
+  loginSuccess: PropTypes.func.isRequired
 };
 export default InputLogin;

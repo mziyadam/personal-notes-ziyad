@@ -3,7 +3,6 @@ import { getNote } from '../utils/network-data';
 import React from 'react';
 import { showFormattedDate } from "../utils";
 import { Card } from 'react-bootstrap';
-import PropTypes from 'prop-types';
 function DetailPage() {
   const { id } = useParams();
   const [note, setNote] = React.useState(null);
@@ -32,10 +31,4 @@ function DetailPage() {
   }
   return <p>Note is not found!</p>;
 }
-DetailPage.propTypes = {
-  id: PropTypes.string,
-  fetchNote: PropTypes.func,
-  note: PropTypes.object,
-  setNote: PropTypes.func
-};
 export default DetailPage;

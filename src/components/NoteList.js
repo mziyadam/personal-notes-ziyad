@@ -45,7 +45,7 @@ class NoteList extends React.Component {
         } else {
             return (
                 <div>
-                    <h1 className='text-center'>Tidak ada catatan</h1>
+                    <h1 className='text-center alternate'>Tidak ada catatan</h1>
                 </div>
             );
         }
