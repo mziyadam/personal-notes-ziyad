@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { addNote } from '../utils';
+import { addNote } from '../utils/network-data';
 
 class AddNote extends React.Component {
     constructor(props) {
@@ -32,11 +32,12 @@ class AddNote extends React.Component {
         });
     }
 
-    onSubmitEventHandler(event) {
-        event.preventDefault();
+    async onSubmitEventHandler(event) {
+        // event.preventDefault();
         const title = this.state.title;
         const body = this.state.body;
-        addNote({ title, body });
+        await addNote({ title, body });
+        // window.locate.replace('/');
     }
     render() {
         return (

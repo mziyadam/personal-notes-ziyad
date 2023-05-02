@@ -1,42 +1,41 @@
 import { useParams } from 'react-router-dom';
-import { getNote } from '../utils';
+import { getNote } from '../utils/network-data';
 import React from 'react';
 import { showFormattedDate } from "../utils";
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-function DetailPageWrapper() {
+function DetailPage() {
   const { id } = useParams();
-  return <DetailPage id={id} />;
-}
-class DetailPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      note: getNote(props.id)
-    };
-  }
-
-  render() {
-    if (this.state.note === null) {
-      return <p>Note is not found!</p>;
+  const [note, setNote] = React.useState(null);
+  React.useEffect(() => {
+    async function fetchNote() {
+      const data = await getNote(id);
+      setNote(data);
     }
+    fetchNote();
+  }, [id]);
+  if (note !== null) {
     return (
       <section>
         <Card className="p-2 m-2">
           <Card.Body>
-            <Card.Title>{this.state.note.title}</Card.Title>
-            <Card.Subtitle>{showFormattedDate(this.state.note.createdAt)}</Card.Subtitle>
+            <Card.Title>{note.data.title}</Card.Title>
+            <Card.Subtitle>{showFormattedDate(note.data.createdAt)}</Card.Subtitle>
             <Card.Text>
-              {this.state.note.body}
+              {note.data.body}
             </Card.Text>
           </Card.Body>
         </Card>
       </section>
     );
+
   }
+  return <p>Note is not found!</p>;
 }
 DetailPage.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string,
+  fetchNote: PropTypes.func,
+  note: PropTypes.object,
+  setNote: PropTypes.func
 };
-export default DetailPageWrapper;
+export default DetailPage;

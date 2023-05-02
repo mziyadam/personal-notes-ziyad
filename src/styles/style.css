@@ -186,3 +186,31 @@ input::placeholder, textarea::placeholder {
     grid-template-columns: repeat(4, 1fr);
   }
 } */
+:root {
+  --font-color: #333;
+  --background-color: #eee;
+}
+ 
+[data-theme='dark'] {
+  --font-color: #333;
+  --background-color: #333;
+}
+ 
+body {
+  font-family: sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+ 
+ 
+button {
+  background: transparent;
+  color: var(--font-color);
+  font-size: 48px;
+  border: 0;
+  cursor: pointer;
+}
+ 
+p {
+  font-size: 32px;
+}

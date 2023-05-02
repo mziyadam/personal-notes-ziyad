@@ -1,20 +1,30 @@
 import React from 'react';
 // import style
-import { deleteNote, getInitialData } from '../utils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoteItem from './NoteItem';
+import { getActiveNotes, deleteNote } from '../utils/network-data';
 class NoteList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: getInitialData()
+            notes: []
         }
         this.onDeleteNoteHandler = this.onDeleteNoteHandler.bind(this);
     }
 
-    onDeleteNoteHandler(id) {
-        deleteNote(id);
-        this.setState({ notes: getInitialData() });
+    async componentDidMount() {
+        const { data } = await getActiveNotes();
+        this.setState(() => {
+          return {
+            notes: data,
+          };
+        });
+      }
+
+    async onDeleteNoteHandler(id) {
+        await deleteNote(id);
+        const { data } = await getActiveNotes();
+        this.setState({ notes: data });
     }
     render() {
         if (this.state.notes.length > 0) {
